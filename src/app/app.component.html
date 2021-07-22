@@ -1,4 +1,4 @@
-<div fxLayout="column" fxLayoutGap="40px">
+<div fxLayout="column" fxLayoutGap="36px">
   <header class="page-header" fxFlex="100px" fxLayout="row">
     <section fxFlex="68%">
       <div class="container_profile">
@@ -41,7 +41,7 @@
   </header>
 
   <div fxFlex fxLayout="row" class="content_table_newPost"> 
-    <section fxFlex="500px">
+    <section fxFlex="500px" class="table_elements">
       <div class="schedules">
         Agendamentos de {{ schedulePeriod?.start_date | date }} até
         {{ schedulePeriod?.end_date | date }}
@@ -82,35 +82,41 @@
     </section>
 
     <section fxFlex  class="section_agenda">
-      <div class="agendar">
-        <button mat-button (click)="schedule()">
-          Agendar
-        </button>
-      </div>
-      <mat-tab-group (selectedTabChange)="changeTab($event)">
+     
+      <mat-tab-group (selectedTabChange)="changeTab($event)" class="container">
         <mat-tab label="Novo post">
           <div class="center">
-            <ngx-file-drop
-              dropZoneLabel="Drop files here"
-              (onFileDrop)="dropped($event)"
-              (onFileOver)="fileOver($event)"
-              (onFileLeave)="fileLeave($event)"
-            >
-              <ng-template
-                ngx-file-drop-content-tmp
-                let-openFileSelector="openFileSelector"
+            <div class="newPost">
+              <ngx-file-drop
+                dropZoneLabel="Drop files here"
+                (onFileDrop)="dropped($event)"
+                (onFileOver)="fileOver($event)"
+                (onFileLeave)="fileLeave($event)"
               >
-                Imagem
-                <button type="button" (click)="openFileSelector()">
-                  Browse Files
-                </button>
-              </ng-template>
-            </ngx-file-drop>
+                <ng-template
+                  ngx-file-drop-content-tmp
+                  let-openFileSelector="openFileSelector"
+                >
+                  <div class="newPost_files">
+                    <span class="image">Imagem</span>
+                    <button type="button" (click)="openFileSelector()" class="button_files">
+                      Seu Post aqui
+                    </button>
+                  </div>
+                </ng-template>
+              </ngx-file-drop>
+            </div>
             <div class="upload-table">
               <table class="table">
                 <thead>
-                  <tr>
-                    <th>Name</th>
+                  <tr class="legenda_container">
+                    <th>
+                      <input 
+                        type="text" 
+                        class="legenda"
+                        placeholder="Digite algo legal"
+                      >
+                    </th>
                   </tr>
                 </thead>
                 <tbody class="upload-name-style">
@@ -123,30 +129,45 @@
               </table>
             </div>
           </div>
+          <div class="agendar">
+            <button mat-button (click)="schedule()" class="button_agenda">
+              Agende seu Post
+            </button>
+          </div>
         </mat-tab>
         <mat-tab label="Novo Story">
-          <div class="new_Story neew">
-            <ngx-file-drop
-              dropZoneLabel="Drop files here"
-              (onFileDrop)="dropped($event)"
-              (onFileOver)="fileOver($event)"
-              (onFileLeave)="fileLeave($event)"
-            >
-              <ng-template
-                ngx-file-drop-content-tmp
-                let-openFileSelector="openFileSelector"
+          <div class="center ">
+            <div class="newPost">
+              <ngx-file-drop
+                dropZoneLabel="Drop files here"
+                (onFileDrop)="dropped($event)"
+                (onFileOver)="fileOver($event)"
+                (onFileLeave)="fileLeave($event)"
               >
-                Imagem
-                <button type="button" (click)="openFileSelector()">
-                  Browse Files
-                </button>
-              </ng-template>
-            </ngx-file-drop>
+                <ng-template
+                  ngx-file-drop-content-tmp
+                  let-openFileSelector="openFileSelector"
+                >
+                  <div class="newPost_files">
+                    <span class="image">Imagem</span>
+                    <button type="button" (click)="openFileSelector()" class="button_files">
+                      Seu Story aqui
+                    </button>
+                  </div>
+                </ng-template>
+              </ngx-file-drop>
+            </div>
             <div class="upload-table">
               <table class="table">
                 <thead>
-                  <tr>
-                    <th>Name</th>
+                  <tr class="legenda_container">
+                    <th>
+                      <input 
+                        type="text" 
+                        class="legenda"
+                        placeholder="Digite algo legal"
+                      >
+                    </th>
                   </tr>
                 </thead>
                 <tbody class="upload-name-style">
@@ -158,6 +179,11 @@
                 </tbody>
               </table>
             </div>
+          </div>
+          <div class="agendar">
+            <button mat-button (click)="schedule()" class="button_agenda">
+              Agende seu Story
+            </button>
           </div>
         </mat-tab>
       </mat-tab-group>
